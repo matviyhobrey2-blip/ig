@@ -44,11 +44,12 @@ img {
 }
 
 .page-shell {
-  width: min(1180px, calc(100% - 32px));
-  margin: 24px auto 60px;
+  width: 100%;
+  margin: 0 auto 60px;
+  min-height: 100vh;
   padding: 18px 18px 28px;
   border: 1px solid var(--line);
-  border-radius: 32px;
+  border-radius: 0;
   background: rgba(8, 13, 20, 0.68);
   backdrop-filter: blur(18px);
   box-shadow: var(--shadow);
@@ -110,7 +111,7 @@ img {
 
 .hero {
   display: grid;
-  grid-template-columns: 1.3fr 0.9fr;
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: 28px;
   padding: 22px 8px 30px;
@@ -127,14 +128,12 @@ img {
 
 .hero-copy h1 {
   margin: 0;
-  max-width: 650px;
   font-size: clamp(3.1rem, 5vw, 5.3rem);
   line-height: 0.95;
   letter-spacing: -0.08em;
 }
 
 .lead {
-  max-width: 620px;
   margin-top: 22px;
   color: var(--muted);
   font-size: 1.07rem;
@@ -198,9 +197,10 @@ img {
 
 .floating-tags {
   position: relative;
-  width: 100%;
-  max-width: 100%;
+  width: calc(100% + 54px);
+  max-width: none;
   margin-top: 30px;
+  margin-left: -27px;
   overflow: hidden;
   padding: 12px 0;
   background: transparent;
@@ -213,9 +213,15 @@ img {
   gap: 14px;
   width: max-content;
   white-space: nowrap;
-  padding-left: 6px;
   will-change: transform;
   animation: marquee 18s linear infinite;
+}
+
+.tag-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
 }
 
 .tag {
@@ -346,7 +352,7 @@ img {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-50% - 7px));
+    transform: translateX(calc(0px - var(--marquee-step)));
   }
 }
 
@@ -355,7 +361,7 @@ img {
   .info-strip,
   .bento-grid,
   .contact-panel {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     display: grid;
   }
 
@@ -394,6 +400,8 @@ img {
   }
 
   .floating-tags {
+    width: calc(100% + 58px);
+    margin-left: -29px;
     gap: 10px;
   }
 
